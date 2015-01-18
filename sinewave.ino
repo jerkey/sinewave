@@ -30,9 +30,8 @@ void loop() {
     //Serial.println(pwm);
   }
   */
+  cycle = (int)((float)millis()*360*60.0/1000.0) % 180;
   analogWrite(9,sineTable[cycle]);
-  cycle++;
-  cycle %= 180;
 }
 
 void setPwmFrequency(int pin, int divisor) {
