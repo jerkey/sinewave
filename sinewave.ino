@@ -1,12 +1,13 @@
-byte sineTable[180];
+#define TABLESIZE 288
+byte sineTable[TABLESIZE];
 
 void setup() {
   Serial.begin(57600);
   pinMode(9, OUTPUT); 
   setPwmFrequency(9, 1);
   Serial.println("serial_pwm");
-  for (int i = 0; i < 180; i++) {
-    sineTable[i] = (byte)(255.0 * sin((3.14159/180.0)*i));
+  for (int i = 0; i < TABLESIZE; i++) {
+    sineTable[i] = (byte)(255.0 * sin((3.14159/TABLESIZE)*i));
   }
 }
 
@@ -32,7 +33,7 @@ void loop() {
   */
   analogWrite(9,sineTable[cycle]);
   cycle++;
-  cycle %= 180;
+  cycle %= TABLESIZE;
 }
 
 void setPwmFrequency(int pin, int divisor) {
